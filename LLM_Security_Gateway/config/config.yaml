@@ -1,0 +1,59 @@
+# LLM Security Gateway Configuration
+
+# LLM Security Gateway Configuration
+
+thresholds:
+  injection_score: 0.3  # Keep as is
+  pii_confidence: 0.6
+  
+policies:
+  default: "mask"
+  high_risk: "block"
+  
+injection_patterns:
+  # Role play specific patterns (ADD THESE)
+  - "act as"
+  - "act like"
+  - "pretend to be"
+  - "pretend you are"
+  - "role play"
+  - "roleplay"
+  - "you are now"
+  - "you are actually"
+  - "imagine you are"
+  - "simulate being"
+  - "from now on you are"
+  - "take on the role"
+  - "play the role"
+  - "act as if"
+  
+  # DAN/Jailbreak patterns
+  - "DAN"
+  - "do anything now"
+  - "jailbreak"
+  
+  # Existing patterns
+  - "ignore previous instructions"
+  - "ignore all instructions"
+  - "system prompt"
+  - "bypass"
+  - "forget your rules"
+  
+sensitive_patterns:
+  api_key: "[A-Za-z0-9]{20,}"
+  internal_id: "EMP-\\d{5}"
+  secret_key: "sk-[A-Za-z0-9]{32,}"
+  
+entities_to_mask:
+  - "PERSON"
+  - "EMAIL_ADDRESS"
+  - "PHONE_NUMBER"
+  - "CREDIT_CARD"
+  - "SSN"
+  - "API_KEY"
+  - "INTERNAL_ID"
+  
+latency:
+  enable_measurement: true
+  log_slow_queries: true
+  slow_threshold_ms: 500
