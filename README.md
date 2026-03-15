@@ -1,61 +1,45 @@
-# 🔒 LLM Security Gateway - Presidio-Based
+# LLM Security Mini-Gateway with Presidio
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Presidio](https://img.shields.io/badge/Presidio-2.2.33-green.svg)](https://microsoft.github.io/presidio/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 📋 Assignment Information
-- **Course:** Artificial Intelligence (AIC201) - Assignment 2 [CLO-2]
-- **Instructor:** Dr. Arshad Farhad
-- **Project:** Presidio-Based LLM Security Mini-Gateway
 
-## 🎯 Overview
-A security gateway that protects LLM-based systems from:
-- Prompt Injection Attacks
-- Jailbreak Attempts
-- System Prompt Extraction
-- PII Leakage
-- API Key/Secret Exposure
+A modular security gateway for Large Language Models (LLMs) that protects against prompt injection, jailbreak attempts, and sensitive information leakage using Microsoft Presidio.
 
-## 🏗️ Architecture
-User Input → Injection Detection → Presidio Analyzer → Policy Decision → Output
+## 🚀 Quick Start
 
+```bash
+# Clone repository
+git clone https://github.com/01-134241-005/LLM-security-gateway-presidio.git
+cd LLM-security-gateway-presidio
 
-## ✨ Features
-- ✅ Prompt injection & jailbreak detection with scoring
-- ✅ PII detection using Microsoft Presidio
-- ✅ 3+ custom Presidio recognizers
-- ✅ Context-aware scoring
-- ✅ Composite entity detection
-- ✅ Confidence calibration
-- ✅ Configurable policies (Allow/Mask/Block)
-- ✅ Latency measurement
-- ✅ Comprehensive evaluation tables
+# Setup environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-llm-security-gateway-presidio/
-├── README.md
-├── requirements.txt
-├── setup.py
-├── config/
-│   ├── settings.py
-│   └── thresholds.yaml
-├── src/
-│   ├── gateway.py
-│   ├── detectors/
-│   │   └── injection_detector.py
-│   ├── presidio/
-│   │   ├── custom_recognizers.py
-│   │   └── composite_entities.py
-│   ├── policies/
-│   │   └── decision_engine.py
-│   └── utils/
-│       ├── metrics.py
-│       └── latency.py
-├── evaluation/
-│   ├── generate_tables.py
-│   └── test_cases.csv
-├── tests/
-│   └── test_detectors.py
-└── bonus/
-    ├── ollama_integration.py
-    └── llm_backend.py
+# Install dependencies
+pip install -r requirements.txt
+python -m spacy download en_core_web_lg
+
+# Run tests
+pytest tests/ -v
+
+# Start gateway
+python run_gateway.py --config config/config.yaml
+
+✨ Features
+Injection Detection: Identifies prompt injection and jailbreak attempts
+
+PII Detection: Microsoft Presidio with 4 custom recognizers
+
+Policy Engine: ALLOW/MASK/BLOCK decisions
+
+Performance: 45.34ms avg latency, 100% accuracy on test suite
+📦 Dependencies
+text
+presidio-analyzer==2.2.33
+presidio-anonymizer==2.2.33
+spacy==3.7.4
+flask==3.0.2
+pytest==8.0.2
